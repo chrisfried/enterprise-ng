@@ -4,15 +4,19 @@ import {
   ViewChild
 } from '@angular/core';
 
-import {
-  SohoRadarComponent
-} from '@infor/sohoxi-angular';
+import {SohoColumnComponent} from '../../soho/column';
 
 @Component({
   selector: 'soho-column-demo',
   templateUrl: './column-grouped.demo.html',
 })
 export class ColumnGroupedDemoComponent implements OnInit {
+
+  @ViewChild(SohoColumnComponent) sohoColumnComponent: SohoColumnComponent;
+
+  // The following multiple "private selection" definitions are all examples of ways to set the selection on the chart
+  // private selection: SohoColumnSelected  = {groupName: 'name', groupValue: 'Component C'};
+  private selection: SohoColumnSelected  = {groupIndex: 1};
 
   public columnGroupedData = [{
     data: [{
@@ -65,4 +69,14 @@ export class ColumnGroupedDemoComponent implements OnInit {
 
   constructor() {}
   ngOnInit() {}
+
+  setChartSelection() {
+    const SohoColumnSelected: SohoColumnSelected = this.selection;
+    this.sohoColumnComponent.setSelected(SohoColumnSelected);
+  }
+
+  toggleChartSelection () {
+    const SohoColumnSelected: SohoColumnSelected = this.selection;
+    this.sohoColumnComponent.toggleSelected(SohoColumnSelected);
+  }
 }

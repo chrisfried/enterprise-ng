@@ -23,6 +23,7 @@ import { SohoEditorModule } from './editor/soho-editor.module';
 import { SohoEmptyMessageModule} from './emptymessage/soho-emptymessage.module';
 import { SohoErrorModule } from './error/soho-error.module';
 import { SohoExpandableAreaModule } from './expandablearea/soho-expandablearea.module';
+import { SohoFieldFilterModule } from './field-filter/soho-field-filter.module';
 import { SohoFieldOptionsModule } from './field-options/soho-field-options.module';
 import { SohoFileUploadAdvancedModule } from './fileupload-advanced/soho-fileupload-advanced.module';
 import { SohoFileUploadModule } from './fileupload/soho-fileupload.module';
@@ -36,6 +37,7 @@ import { SohoInputValidateModule } from './input-validate/soho-input-validate.mo
 import { SohoLabelModule } from './label/soho-label.module';
 import { SohoLineModule } from './line/soho-line.module';
 import { SohoListViewModule } from './listview/soho-listview.module';
+import { SohoLocaleModule } from './locale/soho-locale.module';
 import { SohoLookupModule } from './lookup/soho-lookup.module';
 import { SohoMaskModule } from './mask/soho-mask.module';
 import { SohoMastheadModule } from './masthead/soho-masthead.module';
@@ -58,6 +60,7 @@ import { SohoSpinboxModule } from './spinbox/soho-spinbox.module';
 import { SohoStepProcessModule } from './stepprocess/soho-stepprocess.module';
 import { SohoSwapListModule } from './swaplist/soho-swaplist.module';
 import { SohoTabsModule } from './tabs/soho-tabs.module';
+import { SohoTagModule } from './tag/soho-tag.module';
 import { SohoTextAreaModule } from './textarea/soho-textarea.module';
 import { SohoTimePickerModule } from './timepicker/soho-timepicker.module';
 import { SohoToastModule } from './toast/soho-toast.module';
@@ -94,6 +97,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoEmptyMessageModule,
     SohoErrorModule,
     SohoExpandableAreaModule,
+    SohoFieldFilterModule,
     SohoFieldOptionsModule,
     SohoFileUploadAdvancedModule,
     SohoFileUploadModule,
@@ -107,6 +111,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoLabelModule,
     SohoLineModule,
     SohoListViewModule,
+    SohoLocaleModule,
     SohoLookupModule,
     SohoMaskModule,
     SohoMastheadModule,
@@ -129,6 +134,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoStepProcessModule,
     SohoSwapListModule,
     SohoTabsModule,
+    SohoTagModule,
     SohoTextAreaModule,
     SohoTimePickerModule,
     SohoToastModule,
@@ -139,8 +145,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoTreemapModule,
     SohoWizardModule
   ],
-  declarations: [
-  ],
+  declarations: [],
   exports: [
     SohoAboutModule,
     SohoAccordionModule,
@@ -166,6 +171,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoEmptyMessageModule,
     SohoErrorModule,
     SohoExpandableAreaModule,
+    SohoFieldFilterModule,
     SohoFieldOptionsModule,
     SohoFileUploadAdvancedModule,
     SohoFileUploadModule,
@@ -179,6 +185,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoLabelModule,
     SohoLineModule,
     SohoListViewModule,
+    SohoLocaleModule,
     SohoLookupModule,
     SohoMaskModule,
     SohoMastheadModule,
@@ -200,6 +207,7 @@ import { SohoWizardModule } from './wizard/soho-wizard.module';
     SohoStepProcessModule,
     SohoSwapListModule,
     SohoTabsModule,
+    SohoTagModule,
     SohoTextAreaModule,
     SohoTimePickerModule,
     SohoToastModule,

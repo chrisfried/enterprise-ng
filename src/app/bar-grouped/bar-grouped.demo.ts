@@ -3,12 +3,19 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+import {SohoBarComponent} from '../../soho/bar';
 
 @Component({
   selector: 'soho-bar-demo',
   templateUrl: './bar-grouped.demo.html',
 })
 export class BarGroupedDemoComponent implements OnInit {
+
+  @ViewChild(SohoBarComponent) sohoBarComponent: SohoBarComponent;
+
+  // The following multiple "private selection" definitions are all examples of ways to set the selection on the chart
+  // private selection: SohoBarSelected  = {groupName: 'name', groupValue: 'Component B'};
+  private selection: SohoBarSelected  = {groupIndex: 2};
 
   public barGroupedData = [{
     data: [{
@@ -51,4 +58,13 @@ export class BarGroupedDemoComponent implements OnInit {
 
   ngOnInit() {}
 
+  setChartSelection() {
+    const SohoBarSelected: SohoBarSelected = this.selection;
+    this.sohoBarComponent.setSelected(SohoBarSelected);
+  }
+
+  toggleChartSelection () {
+    const SohoBarSelected: SohoBarSelected = this.selection;
+    this.sohoBarComponent.toggleSelected(SohoBarSelected);
+  }
 }

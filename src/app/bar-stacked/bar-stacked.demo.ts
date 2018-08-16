@@ -3,12 +3,19 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+import {SohoBarComponent} from '../../soho/bar';
 
 @Component({
   selector: 'soho-bar-demo',
   templateUrl: './bar-stacked.demo.html',
 })
 export class BarStackedDemoComponent implements OnInit {
+
+  @ViewChild(SohoBarComponent) sohoBarComponent: SohoBarComponent;
+
+  // The following multiple "private selection" definitions are all examples of ways to set the selection on the chart
+  // private selection: SohoBarSelected  = {fieldName: 'name', fieldValue: '2009'};
+  private selection: SohoBarSelected  = {index: 0};
 
   public barStackedData = [{
     data: [{
@@ -42,4 +49,13 @@ export class BarStackedDemoComponent implements OnInit {
 
   ngOnInit() {}
 
+  setChartSelection() {
+    const SohoBarSelected: SohoBarSelected = this.selection;
+    this.sohoBarComponent.setSelected(SohoBarSelected);
+  }
+
+  toggleChartSelection () {
+    const SohoBarSelected: SohoBarSelected = this.selection;
+    this.sohoBarComponent.toggleSelected(SohoBarSelected);
+  }
 }

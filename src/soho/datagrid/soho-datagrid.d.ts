@@ -46,6 +46,13 @@ interface SohoDataGridOptions {
   /** List of columns definitions. */
   columns?: SohoDataGridColumn[];
 
+  /**
+   * The name of the column stretched to fill the width of the datagrid,
+   * or 'last' where the last column will be stretched to fill the
+   * remaining space.
+   */
+  stretchColumn?: string;
+
   /** Initial dataset. */
   dataset?: Object[];
 
@@ -358,19 +365,7 @@ type SohoDataGridColumnEditorFunction = (
   item?: any
 ) => SohoDataGridCellEditor;
 
-declare var Editors: {
-  // Supports, Text, Numeric, Integer via mask
-  Input: SohoDataGridColumnEditorFunction;
-  Textarea: SohoDataGridColumnEditorFunction;
-  Checkbox: SohoDataGridColumnEditorFunction;
-  Dropdown: SohoDataGridColumnEditorFunction;
-  Date: SohoDataGridColumnEditorFunction;
-  Lookup: SohoDataGridColumnEditorFunction;
-  Autocomplete: SohoDataGridColumnEditorFunction;
-  Favorite: SohoDataGridColumnEditorFunction;
-};
-
-declare var Soho: {
+interface SohoStatic {
   Formatters: {
     Text: SohoDataGridColumnFormatterFunction;
     Input: SohoDataGridColumnFormatterFunction;
@@ -412,21 +407,23 @@ declare var Soho: {
     Status: SohoDataGridColumnFormatterFunction;
     TargetedAchievement: SohoDataGridColumnFormatterFunction;
   };
-
   Editors: {
     // Supports, Text, Numeric, Integer via mask
     Input: SohoDataGridColumnEditorFunction;
     Textarea: SohoDataGridColumnEditorFunction;
+    Editor: SohoDataGridColumnEditorFunction;
     Checkbox: SohoDataGridColumnEditorFunction;
+    Colorpicker: SohoDataGridColumnEditorFunction;
     Dropdown: SohoDataGridColumnEditorFunction;
     Date: SohoDataGridColumnEditorFunction;
+    Fileupload: SohoDataGridColumnEditorFunction;
+    Time: SohoDataGridColumnEditorFunction;
     Lookup: SohoDataGridColumnEditorFunction;
     Autocomplete: SohoDataGridColumnEditorFunction;
+    Spinbox: SohoDataGridColumnEditorFunction;
     Favorite: SohoDataGridColumnEditorFunction;
   };
-
-  Locale: SohoLocaleStatic;
-};
+}
 
 type SohoDataGridColumnFormatterFunction = (
   /** Row number. */
@@ -659,7 +656,7 @@ interface SohoDataGridColumn {
   mask?: string;
 
   /** The newer style object pattern mask for the column*/
-  maskOptions?: any[];
+  maskOptions?: SohoMaskOptions;
 
   /** Call the grids `onPostRenderCell` function for cells in this column after they are rendered. */
   postRender?: boolean;
@@ -702,6 +699,9 @@ interface SohoDataGridColumn {
    *  If false children nodes will not be selected when the parent node is selected
    */
   selectChildren?: boolean;
+
+  /** Enforce a max length when editing this column */
+  maxLength?: boolean;
 }
 
 interface SohoDataGridColumnNumberFormat {
@@ -738,7 +738,7 @@ interface SohoDataGridStatic {
   pager: SohoPagerStatic;
 
   /** Updates the dataset displayed by the data grid. */
-  updateDataset(dataset: Object[]): void;
+  updateDataset(dataset: Object[], pagerInfo?: SohoPagerPagingInfo): void;
 
   /** Sets the row height on the datagrid. */
   rowHeight(rowHeight: SohoDataGridRowHeight): void;
@@ -853,6 +853,9 @@ interface SohoDataGridStatic {
 
   setActiveCell(idx: number, idx2: number): void;
 
+  /** Returns an array of row numbers for the rows containing the value for the specified field */
+  findRowsByValue(fieldName: string, value: any): number[];
+
   renderHeader(): void;
 
   renderRows(): void;
@@ -958,6 +961,13 @@ interface SohoDataGridAddRowEvent {
   value: any;
   oldValue: any;
 }
+
+interface SohoDataGridOpenFilteredEvent {
+  conditions: SohoDataGridFilterCondition;
+  op: string;
+  trigger: string;
+}
+
 interface SohoDataGridOpenFilterRowEvent {
 }
 

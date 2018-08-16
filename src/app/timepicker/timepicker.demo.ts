@@ -6,7 +6,7 @@ import {
 
 import {
   SohoTimePickerComponent
-} from '@infor/sohoxi-angular';
+} from 'ids-enterprise-ng';
 
 @Component({
   selector: 'soho-timepicker-demo',
@@ -18,7 +18,7 @@ export class TimePickerDemoComponent implements OnInit {
 
   public model = { // tslint:disable-line
     hhmm: '1:23 PM',
-    HHmm24: ''
+    HHmm24: '17:50'
   };
   public showModel = false;
   public timepickerDisabled = false;

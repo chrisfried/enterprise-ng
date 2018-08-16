@@ -3,12 +3,19 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+import {SohoLineComponent} from '../../soho/line';
 
 @Component({
   selector: 'soho-line-demo',
   templateUrl: './bubble.demo.html',
 })
 export class BubbleDemoComponent implements OnInit {
+
+  @ViewChild(SohoLineComponent) sohoLineComponent: SohoLineComponent;
+
+  // The following multiple "private selection" definitions are all examples of ways to set the selection on the chart
+  private selection: SohoLineSelected  = {groupIndex: 0};
+  // private selection: SohoLineSelected  = {groupName: 'name', groupValue: 'Series 02'};
 
   public bubbleData = [{
     data: [{
@@ -102,4 +109,13 @@ export class BubbleDemoComponent implements OnInit {
 
   ngOnInit() {}
 
+  setChartSelection() {
+    const sohoLineSelected: SohoLineSelected = this.selection;
+    this.sohoLineComponent.setSelected(sohoLineSelected);
+  }
+
+  toggleChartSelection () {
+    const sohoLineSelected: SohoLineSelected = this.selection;
+    this.sohoLineComponent.toggleSelected(sohoLineSelected);
+  }
 }

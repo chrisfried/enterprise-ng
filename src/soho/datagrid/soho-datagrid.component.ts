@@ -16,18 +16,13 @@ import {
   Injector,
   ApplicationRef,
   Compiler,
-  NgModule,
   ComponentRef,
-  ComponentFactory,
-  Provider,
   ReflectiveInjector,
   Type
 } from '@angular/core';
 
 import { ArgumentHelper } from '../utils/argument.helper';
-
 import { SohoDataGridService } from './soho-datagrid.service';
-import { SohoComponentsModule } from '@infor/sohoxi-angular';
 
 export type SohoDataGridType = 'auto' | 'content-only';
 
@@ -299,10 +294,17 @@ export class SohoDataGridComponent implements OnInit, AfterViewInit, OnDestroy, 
   @Input() set dataset(dataset: Array<any>) {
     this._gridOptions.dataset = dataset;
     if (this.jQueryElement) {
+      const pagerInfo: SohoPagerPagingInfo = {};
       this.datagrid.settings.dataset = dataset;
 
+      // TreeGrid does not have paging
+      // set as active page so datagrid headers aren't rebuilt
+      if (this.treeGrid) {
+        pagerInfo.activePage = -1;
+      }
+
       // @todo do we need hints as this may be bundled up with other changes.
-      this.datagrid.updateDataset(dataset);
+      this.datagrid.updateDataset(dataset, pagerInfo);
     }
   }
 
@@ -925,6 +927,31 @@ export class SohoDataGridComponent implements OnInit, AfterViewInit, OnDestroy, 
   }
 
   /**
+   * The name of the column stretched to fill the width of the datagrid,
+   * or 'last' where the last column will be stretched to fill the
+   * remaining space.
+   *
+   * @param stretchColumn - the name of the column to stretch; or 'last',
+   */
+  @Input() set stretchColumn(stretchColumn: string) {
+    this._gridOptions.stretchColumn = stretchColumn;
+    if (this.jQueryElement) {
+      this.datagrid.settings.stretchColumn = stretchColumn;
+      this.markForRefresh('stretchColumn', RefreshHintFlags.Rebuild);
+    }
+  }
+
+  /**
+   * The name of the column to stretch, or 'last' if the
+   * last column is stretched.
+   *
+   * @memberof SohoDataGridComponent
+   */
+  get stretchColumn() {
+    return this._gridOptions.stretchColumn;
+  }
+
+  /**
    * Whether to show the page size selector or not.
    */
   @Input() set showPageSizeSelector(showPageSizeSelector: boolean) {
@@ -1089,7 +1116,9 @@ export class SohoDataGridComponent implements OnInit, AfterViewInit, OnDestroy, 
 
   // An internal gridOptions object that gets updated by using
   // the component's Inputs()
-  private _gridOptions: SohoDataGridOptions = {};
+  private _gridOptions: SohoDataGridOptions = {
+    stretchColumn: 'last' // default value
+  };
 
   // Provides hints to the component after the next refresh.
   private refreshHint: RefreshHintFlags = RefreshHintFlags.None;
@@ -1381,11 +1410,29 @@ export class SohoDataGridComponent implements OnInit, AfterViewInit, OnDestroy, 
   }
 
   /**
+   * Sets the active cell.
+   * @param idx The index of the row of the cell to set active.
+   * @param idx2 The index of the cell to set active.
+   */
+  public setActiveCell(idx: number, idx2: number): void {
+    this.datagrid.setActiveCell(idx, idx2);
+  }
+
+  /**
    * Scrolls the row at <b>idx</b> into view in the view port.
    * @param idx The index of the row to scroll into view.
    */
   public scrollRowIntoView(idx: number): void {
     this.datagrid.setActiveCell(idx, 0);
+  }
+
+  /**
+   * Returns an array of row numbers for the rows containing the value for the specified field.
+   * @param fieldName The field name to search.
+   * @param value The value to use in search.
+   */
+  findRowsByValue(fieldName: string, value: any): number[] {
+    return this.datagrid.findRowsByValue(fieldName, value);
   }
 
   /**

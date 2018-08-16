@@ -97,24 +97,28 @@ import { DataGridSettingsDemoComponent } from './datagrid/datagrid-settings.demo
 import { DataGridStandardFormatterDemoComponent } from './datagrid/datagrid-standard-formatter.demo';
 import { DataGridToolbarDemoComponent } from './datagrid/datagrid-toolbar.demo';
 import { DataGridTreeGridDemoComponent } from './datagrid/datagrid-treegrid.demo';
+import { DatagridTreegridDynamicfilteringDemoComponent } from './datagrid/datagrid-treegrid-dynamicfiltering.demo';
 import { DatepickerDemoComponent } from './datepicker/datepicker.demo';
 import { DonutDemoComponent } from './donut/donut.demo';
 import { DropdownAsyncBusyDemoComponent } from './dropdown/dropdown-async-busy.demo';
 import { DropdownAsyncDemoComponent } from './dropdown/dropdown-async.demo';
 import { DropdownDemoComponent } from './dropdown/dropdown.demo';
-import { DropdownLMDemoComponent } from './dropdown/dropdown-lm.demo';
 import { DropdownMultiselectDemoComponent } from './dropdown/dropdown-multiselect.demo';
+import { DropdownReactiveDemoComponent } from './dropdown/dropdown-reactive.demo';
 import { DropdownSimpleDemoComponent } from './dropdown/dropdown-simple.demo';
+import { DropdownTypeaheadDemoComponent } from './dropdown/dropdown-typeahead.demo';
 import { EditorDemoComponent } from './editor/editor.demo';
 import { EmptyMessageDemoComponent } from './emptymessage/emptymessage.demo';
 import { ErrorDemoComponent } from './error/error.demo';
 import { ExpandableAreaDemoComponent } from './expandablearea/expandablearea.demo';
 import { ExpandableAreaFooterDemoComponent } from './expandablearea/expandablearea-footer.demo';
+import { FieldFilterDemoComponent } from './field-filter/field-filter.demo';
 import { FieldOptionsDemoComponent } from './field-options/field-options.demo';
 import { FieldOptionsPopdownDemoComponent } from './field-options/field-options-popdown.demo';
 import { FileUploadDemoComponent } from './fileupload/fileupload.demo';
 import { FileUploadLMDemoComponent } from './fileupload/fileupload-lm.demo';
 import { FileUploadAdvancedDemoComponent } from './fileupload-advanced/fileupload-advanced.demo';
+import { FormReactiveFormDemoComponent } from './form/form-reactive-form.demo';
 import { HeaderTabsDemoComponent } from './header/header-tabs.demo';
 import { HeaderToggleButtonsDemoComponent } from './header/header-toggle-buttons.demo';
 import { HeaderToolbarAndTabsDemoComponent } from './header/header-toolbar-and-tabs.demo';
@@ -168,6 +172,7 @@ import { TabsDismissibleDemoComponent } from './tabs/tabs-dismissible.demo';
 import { TabsDropdownDemoComponent } from './tabs/tabs-dropdown.demo';
 import { TabsDynamicDemoComponent } from './tabs/tabs-dynamic.demo';
 import { TabsVerticalDemoComponent } from './tabs/tabs-vertical.demo';
+import { TagDemoComponent } from './tag/tag.demo';
 import { TextareaDemoComponent } from './textarea/textarea.demo';
 import { TimePickerDemoComponent } from './timepicker/timepicker.demo';
 import { ToastDemoComponent } from './toast/toast.demo';
@@ -263,6 +268,7 @@ import { TestTabsBasicComponent } from './tabs/test-tabs-basic.demo';
     DataGridStandardFormatterDemoComponent,
     DataGridToolbarDemoComponent,
     DataGridTreeGridDemoComponent,
+    DatagridTreegridDynamicfilteringDemoComponent,
     DataGridGroupableDemoComponent,
     DatepickerDemoComponent,
     DemoCellInputEditorComponent,
@@ -274,19 +280,22 @@ import { TestTabsBasicComponent } from './tabs/test-tabs-basic.demo';
     DropdownAsyncBusyDemoComponent,
     DropdownAsyncDemoComponent,
     DropdownDemoComponent,
-    DropdownLMDemoComponent,
     DropdownMultiselectDemoComponent,
+    DropdownReactiveDemoComponent,
     DropdownSimpleDemoComponent,
+    DropdownTypeaheadDemoComponent,
     EditorDemoComponent,
     EmptyMessageDemoComponent,
     ErrorDemoComponent,
     ExpandableAreaDemoComponent,
     ExpandableAreaFooterDemoComponent,
+    FieldFilterDemoComponent,
     FieldOptionsDemoComponent,
     FieldOptionsPopdownDemoComponent,
     FileUploadAdvancedDemoComponent,
     FileUploadDemoComponent,
     FileUploadLMDemoComponent,
+    FormReactiveFormDemoComponent,
     HeaderTabsDemoComponent,
     HeaderToggleButtonsDemoComponent,
     HeaderToolbarAndTabsDemoComponent,
@@ -339,6 +348,7 @@ import { TestTabsBasicComponent } from './tabs/test-tabs-basic.demo';
     TabsDropdownDemoComponent,
     TabsDynamicDemoComponent,
     TabsVerticalDemoComponent,
+    TagDemoComponent,
     TextareaDemoComponent,
     TimePickerDemoComponent,
     ToastDemoComponent,

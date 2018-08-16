@@ -7,6 +7,8 @@
 
 type SohoDatePickerMode = 'standard' | 'range';
 
+type SohoDatePickerCalendarName = 'gregorian' | 'islamic-umalqura';
+
 /**
  * Date Picker Options
  */
@@ -27,13 +29,13 @@ interface SohoDatePickerOptions {
   mode?: SohoDatePickerMode;
 
   /** If a non-matching minutes value is entered, will round the minutes value to the nearest interval on the blur event. */
-  roundToInterval?: number;
+  roundToInterval?: boolean;
 
   /** The pattern used to format the date; or a locale to use. */
   dateFormat?: string;
 
   /** Display a placeholder for empty values? */
-  placeholder?: boolean;
+  placeholder?: string;
 
   /** A date or range of dates that are enabled/disabled. */
   disable?: SohoDatePickerDisable;
@@ -51,19 +53,16 @@ interface SohoDatePickerOptions {
   hideDays?: boolean;
 
   /** The number of months in each direction to show in the dropdown for months (when initially opening) */
-  advanceMonths?: boolean;
+  advanceMonths?: number;
 
   /** The number of months in each direction to show in the dropdown for months (when initially opening) */
-  legend?: SohoDatePickerLegend;
+  legend?: Array<SohoDatePickerLegend>;
 
   /** Use range of two dates options. */
-  useRange?:  boolean;
+  range?:  SohoDatePickerRange;
 
-  /** Use range of two dates options. */
-  rane?:  SohoDatePickerRange;
-
-  /** Use range of two dates options. */
-  calendarName?:  'gregorian'|'islamic-umalqura';
+  /** Calendar name. */
+  calendarName?:  SohoDatePickerCalendarName;
 
   /** If true the dates will use UTC format. This is only partially
    * implemented https://jira.infor.com/browse/SOHO-3437 */
@@ -96,6 +95,8 @@ interface SohoDatePickerRange {
   /**  Include disable dates in range of dates. **/
   includeDisabled?: boolean;
 
+  /** Use range of two dates options. */
+  useRange?:  boolean;
 }
 
 /* Options for the legend */
@@ -129,6 +130,12 @@ interface SohoDatePickerDisable {
 
   /** Enabled. */
   isEnable?: boolean;
+
+  /**
+   * Restrict month selections on datepicker.
+   * It requires minDate and maxDate for the feature to activate.
+   */
+  restrictMonths?: boolean;
 }
 
 /**
@@ -147,12 +154,12 @@ interface SohoDatePickerStatic {
 
   readonly(): void;
 
-  // TODO: waiting on SOHO-4834 - 4.0 Datepicker - Needs to support enable(), disable(), and readonly() methods
   enable(): void;
 
   disable(): void;
 
-  // SOHO-4777 - 4.0 Datepicker - Needs destroy method.
+  updated(settings?: SohoDatePickerOptions): void;
+
   destroy(): void;
 }
 
@@ -171,8 +178,6 @@ interface JQueryStatic {
   datepicker: SohoDatePickerStatic;
 }
 
-interface JQuery<TElement extends Node = HTMLElement> {
-  datepicker(options: SohoDatePickerOptions): JQuery;
-  on(events: string,
-    handler: JQuery.EventHandlerBase<TElement, SohoDatePickerEvent>): this;
+interface JQuery {
+  datepicker(options?: SohoDatePickerOptions): JQuery;
 }

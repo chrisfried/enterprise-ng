@@ -4,9 +4,7 @@ import {
   ViewChild
 } from '@angular/core';
 
-import {
-  SohoRadarComponent
-} from '@infor/sohoxi-angular';
+import {SohoRadarComponent} from '../../soho/radar';
 
 @Component({
   selector: 'soho-radar-demo',
@@ -14,7 +12,11 @@ import {
 })
 export class RadarDemoComponent implements OnInit {
 
-  @ViewChild(SohoRadarComponent) colorpicker: SohoRadarComponent;
+  @ViewChild(SohoRadarComponent) sohoRadarComponent: SohoRadarComponent;
+
+  // The following multiple "private selection" definitions are all examples of ways to set the selection on the chart
+  // private selection: SohoRadarSelected  = {fieldName: 'name', fieldValue: 'Samsung'};
+  private selection: SohoRadarSelected  = {index: 1};
 
   public radarData = [{
     data: [
@@ -109,7 +111,16 @@ export class RadarDemoComponent implements OnInit {
       name: 'Smartphone',
       id: '3'
     }];
+  }
 
+  setChartSelection() {
+    const sohoRadarSelected: SohoRadarSelected = this.selection;
+    this.sohoRadarComponent.setSelected(sohoRadarSelected);
+  }
+
+  toggleChartSelection () {
+    const sohoRadarSelected: SohoRadarSelected = this.selection;
+    this.sohoRadarComponent.toggleSelected(sohoRadarSelected);
   }
 
 }

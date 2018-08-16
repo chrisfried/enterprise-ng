@@ -5,6 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
+  HostListener,
   Input,
   OnDestroy,
   Output
@@ -96,6 +97,10 @@ export class SohoLookupComponent extends BaseControlValueAccessor<any> implement
     return true;
   }
 
+  @HostBinding('attr.disabled')
+  @Input()
+  isDisabled = undefined;
+
   /**
    * Local variables
    */
@@ -110,6 +115,12 @@ export class SohoLookupComponent extends BaseControlValueAccessor<any> implement
 
   constructor(private element: ElementRef) {
     super();
+  }
+
+  @HostListener('keyup', ['$event'])
+  onKeyUp(event: KeyboardEvent, val) {
+    // This is required, otherwise the the form binding does not see updates.
+    this.internalValue = this.jQueryElement.val() as string;
   }
 
   ngAfterViewInit() {
@@ -209,6 +220,11 @@ export class SohoLookupComponent extends BaseControlValueAccessor<any> implement
     // event[0].value = this.internalValue;
 
     this.change.emit(event);
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    // Update the jQuery widget with the requested disabled state.
+    this.isDisabled = isDisabled ? true : undefined;
   }
 
   /**

@@ -4,7 +4,7 @@ import {
   ViewChild
 } from '@angular/core';
 
-import { SohoDropDownComponent } from '@infor/sohoxi-angular';
+import { SohoDropDownComponent } from 'ids-enterprise-ng';
 
 import { MOCK_STATES } from './dropdown-mock.data';
 
@@ -36,9 +36,6 @@ export class DropdownSimpleDemoComponent implements AfterViewInit {
     // setTimeout simulates the behaviour of a rest service
     setTimeout(() => {
       this.options = MOCK_STATES;
-      setTimeout((f) => {
-        this.dropDownComponent.updated();
-      }, 1000);
     });
   }
 }

@@ -62,18 +62,20 @@ import { DonutDemoComponent } from './donut/donut.demo';
 import { DropdownAsyncBusyDemoComponent } from './dropdown/dropdown-async-busy.demo';
 import { DropdownAsyncDemoComponent } from './dropdown/dropdown-async.demo';
 import { DropdownDemoComponent } from './dropdown/dropdown.demo';
-import { DropdownLMDemoComponent } from './dropdown/dropdown-lm.demo';
 import { DropdownMultiselectDemoComponent } from './dropdown/dropdown-multiselect.demo';
 import { DropdownSimpleDemoComponent } from './dropdown/dropdown-simple.demo';
+import { DropdownTypeaheadDemoComponent } from './dropdown/dropdown-typeahead.demo';
 import { EditorDemoComponent } from './editor/editor.demo';
 import { EmptyMessageDemoComponent } from './emptymessage/emptymessage.demo';
 import { ErrorDemoComponent } from './error/error.demo';
 import { ExpandableAreaDemoComponent } from './expandablearea/expandablearea.demo';
+import { FieldFilterDemoComponent } from './field-filter/field-filter.demo';
 import { FieldOptionsDemoComponent } from './field-options/field-options.demo';
 import { FieldOptionsPopdownDemoComponent } from './field-options/field-options-popdown.demo';
 import { FileUploadDemoComponent } from './fileupload/fileupload.demo';
 import { FileUploadLMDemoComponent } from './fileupload/fileupload-lm.demo';
 import { FileUploadAdvancedDemoComponent } from './fileupload-advanced/fileupload-advanced.demo';
+import { FormReactiveFormDemoComponent } from './form/form-reactive-form.demo';
 import { HeaderTabsDemoComponent } from './header/header-tabs.demo';
 import { HeaderToggleButtonsDemoComponent } from './header/header-toggle-buttons.demo';
 import { HeaderToolbarAndTabsDemoComponent } from './header/header-toolbar-and-tabs.demo';
@@ -124,6 +126,7 @@ import { TabsDismissibleDemoComponent } from './tabs/tabs-dismissible.demo';
 import { TabsDropdownDemoComponent } from './tabs/tabs-dropdown.demo';
 import { TabsDynamicDemoComponent } from './tabs/tabs-dynamic.demo';
 import { TabsVerticalDemoComponent } from './tabs/tabs-vertical.demo';
+import { TagDemoComponent } from './tag/tag.demo';
 import { TextareaDemoComponent } from './textarea/textarea.demo';
 import { TimePickerDemoComponent } from './timepicker/timepicker.demo';
 import { ToastDemoComponent } from './toast/toast.demo';
@@ -147,11 +150,13 @@ import { ValidationFormGroupDemoComponent } from './validation/validation-form-g
 import { ExpandableAreaFooterDemoComponent } from './expandablearea/expandablearea-footer.demo';
 import { WizardDemoComponent } from './wizard/wizard.demo';
 import { DataGridEmptyMessageDemoComponent } from './datagrid/datagrid-empty-message.demo';
+import { DropdownReactiveDemoComponent } from './dropdown/dropdown-reactive.demo';
 
 import { TestTabsBasicComponent } from './tabs/test-tabs-basic.demo';
+import { DatagridTreegridDynamicfilteringDemoComponent } from './datagrid/datagrid-treegrid-dynamicfiltering.demo';
 
 export const routes: Routes = [
-  { path: '',                                       component: ExpandableAreaDemoComponent }, // default
+  { path: '', redirectTo: '', pathMatch: 'full' }, // default
   { path: 'about',                                  component: AboutDemoComponent },
   { path: 'accordion',                              component: AccordionDemoComponent},
   { path: 'accordion-panels',                       component: AccordionPanelsDemoComponent},
@@ -197,6 +202,7 @@ export const routes: Routes = [
   { path: 'datagrid-service',                       component: DataGridServiceDemoComponent },
   { path: 'datagrid-settings',                      component: DataGridSettingsDemoComponent },
   { path: 'datagrid-treegrid',                      component: DataGridTreeGridDemoComponent },
+  { path: 'datagrid-treegrid-dynamicfilter',        component: DatagridTreegridDynamicfilteringDemoComponent },
   { path: 'datagrid-angular-editor',                component: DataGridAngularEditorDemoComponent },
   { path: 'datagrid-angular-card-formatter',        component: DataGridAngularCardFormatterDemoComponent },
   { path: 'datagrid-angular-formatter',             component: DataGridAngularFormatterDemoComponent },
@@ -213,14 +219,17 @@ export const routes: Routes = [
   { path: 'dropdown',                               component: DropdownDemoComponent },
   { path: 'dropdown-async-busy',                    component: DropdownAsyncBusyDemoComponent },
   { path: 'dropdown-async',                         component: DropdownAsyncDemoComponent },
-  { path: 'dropdown-lm',                            component: DropdownLMDemoComponent },
   { path: 'dropdown-multi',                         component: DropdownMultiselectDemoComponent },
+  { path: 'dropdown-reactive',                      component: DropdownReactiveDemoComponent },
   { path: 'dropdown-simple',                        component: DropdownSimpleDemoComponent },
+  { path: 'dropdown-typeahead',                     component: DropdownTypeaheadDemoComponent },
   { path: 'editor',                                 component: EditorDemoComponent },
   { path: 'emptymessage',                           component: EmptyMessageDemoComponent},
   { path: 'error',                                  component: ErrorDemoComponent },
+  { path: 'form-reactive',                          component: FormReactiveFormDemoComponent },
   { path: 'expandablearea',                         component: ExpandableAreaDemoComponent },
   { path: 'expandablearea-footer',                  component: ExpandableAreaFooterDemoComponent },
+  { path: 'field-filter',                           component: FieldFilterDemoComponent },
   { path: 'field-options',                          component: FieldOptionsDemoComponent },
   { path: 'field-options-popdown',                  component: FieldOptionsPopdownDemoComponent },
   { path: 'fileupload-advanced',                    component: FileUploadAdvancedDemoComponent },
@@ -241,6 +250,7 @@ export const routes: Routes = [
   { path: 'label',                                  component: LabelDemoComponent },
   { path: 'line',                                   component: LineDemoComponent },
   { path: 'listview',                               component: ListViewDemoComponent },
+  { path: 'locale-pipe',                            loadChildren: 'app/locale/locale-demo.module#LocaleDemoModule'},
   { path: 'lookup',                                 component: LookupDemoComponent },
   { path: 'lookup-validation',                      component: LookupValidationDemoComponent },
   { path: 'mask',                                   component: MaskDemoComponent },
@@ -276,6 +286,7 @@ export const routes: Routes = [
   { path: 'tabs-dropdown',                          component: TabsDropdownDemoComponent },
   { path: 'tabs-dynamic',                           component: TabsDynamicDemoComponent },
   { path: 'tabs-vertical',                          component: TabsVerticalDemoComponent },
+  { path: 'tags',                                   component: TagDemoComponent },
   { path: 'textarea',                               component: TextareaDemoComponent },
   { path: 'timepicker',                             component: TimePickerDemoComponent },
   { path: 'toast',                                  component: ToastDemoComponent },

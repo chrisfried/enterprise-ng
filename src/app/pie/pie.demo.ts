@@ -3,12 +3,19 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+import {SohoPieComponent} from '../../soho/pie';
 
 @Component({
   selector: 'soho-pie-demo',
   templateUrl: './pie.demo.html',
 })
 export class PieDemoComponent implements OnInit {
+
+  @ViewChild(SohoPieComponent) sohoPieComponent: SohoPieComponent;
+
+  // The following multiple "private selection" definitions are all examples of ways to set the selection on the chart
+  // private selection: SohoPieSelected  = {fieldName: 'name', fieldValue: 'Item D'};
+  private selection: SohoPieSelected  = {index: 1};
 
   public pieData = [{
     data: [{
@@ -54,5 +61,15 @@ export class PieDemoComponent implements OnInit {
 
   onDeselected(event: Event) {
     console.log('Soho Radar: Deselected', event);
+  }
+
+  setChartSelection() {
+    const sohoPieSelected: SohoPieSelected = this.selection;
+    this.sohoPieComponent.setSelected(sohoPieSelected);
+  }
+
+  toggleChartSelection () {
+    const sohoPieSelected: SohoPieSelected = this.selection;
+    this.sohoPieComponent.toggleSelected(sohoPieSelected);
   }
 }

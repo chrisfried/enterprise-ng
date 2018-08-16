@@ -106,16 +106,23 @@ interface SohoRadar {
   updated(settings?: SohoRadarOptions): void;
 
   /** Gets the currently selected element */
-  getSelected(o: SohoRadarOptions, isToggle?: boolean);
+  getSelected(o?: SohoRadarOptions, isToggle?: boolean);
 
   /** Sets the currently selected element */
-  setSelected();
+  setSelected(selected: SohoRadarSelected);
 
   /** Toggles the currently selected element */
-  toggleSelected();
+  toggleSelected(selected: SohoRadarSelected);
 
   /** Destroys the control on completion. */
   destroy(): void;
+}
+
+interface SohoRadarSelected {
+  // Use either index or fieldName and fieldValue
+  fieldName?: string;
+  fieldValue?: any;
+  index?: number;
 }
 
 interface JQuery {
